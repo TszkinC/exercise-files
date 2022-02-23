@@ -1,0 +1,29 @@
+name: test and build
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: set up python env
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: test run
+        run: python hello.py
+  
+  build:
+    runs-on: ubuntu-latest
+    needs: ['test']
+    steps: 
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: create artifect
+        uses: actions/upload-artifect@v2
+        with:
+          name: hello
+          path: .
+
