@@ -25,5 +25,5 @@ jobs:
         uses: actions/upload-artifect@v2
         with:
           name: hello
-          path: .
+          path: ${PWD}
 
